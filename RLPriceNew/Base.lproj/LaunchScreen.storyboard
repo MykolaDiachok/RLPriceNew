@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoRL" translatesAutoresizingMaskIntoConstraints="NO" id="YJg-mK-Sx6">
+                                <rect key="frame" x="16" y="20" width="288" height="37"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biglogorl" translatesAutoresizingMaskIntoConstraints="NO" id="vwQ-Ub-vvg">
+                                <rect key="frame" x="39" y="99" width="242" height="282"/>
+                                <animations/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2015 Nike Dyachok.  All rights reserved." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6z-tM-ujs">
+                                <rect key="frame" x="16" y="459" width="288" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="y6z-tM-ujs" secondAttribute="bottom" id="1Bl-Qi-TcX"/>
+                            <constraint firstItem="YJg-mK-Sx6" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="4Ws-ah-AnT"/>
+                            <constraint firstItem="vwQ-Ub-vvg" firstAttribute="top" relation="greaterThanOrEqual" secondItem="YJg-mK-Sx6" secondAttribute="bottom" constant="8" symbolic="YES" id="AnS-TK-8gt"/>
+                            <constraint firstItem="YJg-mK-Sx6" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" id="Hyw-vi-KZS"/>
+                            <constraint firstItem="y6z-tM-ujs" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="LT5-Sy-KOi"/>
+                            <constraint firstItem="vwQ-Ub-vvg" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="OYG-wK-TTF"/>
+                            <constraint firstItem="YJg-mK-Sx6" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="U5z-s8-05e"/>
+                            <constraint firstItem="vwQ-Ub-vvg" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="qWp-U1-nta"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="YJg-mK-Sx6" secondAttribute="leading" id="rWu-nW-uqw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="y6z-tM-ujs" secondAttribute="trailing" id="zmK-FZ-d6F"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="rWu-nW-uqw"/>
+                                <exclude reference="AnS-TK-8gt"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="biglogorl" width="242" height="282"/>
+        <image name="logoRL" width="392" height="37"/>
+    </resources>
+</document>
