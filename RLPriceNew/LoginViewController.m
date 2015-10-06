@@ -10,11 +10,12 @@
 #import <Parse/Parse.h>
 #import <PDKeychainBindings.h>
 
-@interface LoginViewController ()
+@interface LoginViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *loginTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *btnConnect;
 @property (nonatomic) UIAlertView *theAlert;
+@property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *arrayTextField;
 
 
 @end
@@ -23,9 +24,29 @@
 
 
 - (void)viewDidLoad {
-    self.btnConnect.titleLabel.text = @"Connect";
     [super viewDidLoad];
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        if (!currentUser[@"Enable"]) {
+            [PFUser logOutInBackground];
+            [self.btnConnect setTitle:@"Connect" forState:(UIControlStateNormal)];
+        }
+        else{
+            [self.btnConnect setTitle:@"Connected" forState:(UIControlStateNormal)];
+            for (int x=1; x < [[[self.tabBarController tabBar] items] count]; x++) {
+                [[[[self.tabBarController tabBar]  items] objectAtIndex:x]setEnabled:TRUE];
+            }
+        }
+        
+    }
+    else{
+        [self.btnConnect setTitle:@"Connect" forState:(UIControlStateNormal)];
+    }
     
+    for(UITextField *tempTF in self.arrayTextField)
+    {
+        tempTF.delegate = self;
+    }
     
     PDKeychainBindings *bindings = [PDKeychainBindings sharedKeychainBindings];
     self.loginTextField.text = [bindings objectForKey:@"login"];
@@ -39,12 +60,34 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - KeyBoard
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    for(UITextField *tempTF in self.arrayTextField)
+    {
+        [tempTF resignFirstResponder];
+    }
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    if (textField.tag==1) {
+        [((UITextField *)[self.view viewWithTag:2]) becomeFirstResponder];
+        return YES;
+    }
+    for(UITextField *tempTF in self.arrayTextField)
+    {
+        [tempTF resignFirstResponder];
+    }
+    return YES;
+}
 
 #pragma mark - Connect
 - (IBAction)btConnect:(UIButton *)sender {
-    if ([PFUser currentUser].isAuthenticated) {
+    PFUser *currentUser = [PFUser currentUser];
+    NSLog(@"%@",currentUser);
+    if (currentUser) {
         [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-            self.btnConnect.titleLabel.text = @"Connect";
+            [self.btnConnect setTitle:@"Connect" forState:(UIControlStateNormal)];
             NSLog(@"%@",@"Diconected");
             for (int x=1; x < [[[self.tabBarController tabBar] items] count]; x++) {
                 [[[[self.tabBarController tabBar]  items] objectAtIndex:x]setEnabled:FALSE];
@@ -67,7 +110,7 @@
                                                 PFUser *currentUser = [PFUser currentUser];
                                                 if ((currentUser)&&(currentUser[@"Enable"])) {
                                                     NSLog(@"%@",@"User Enable");
-                                                    self.btnConnect.titleLabel.text = @"Connected";
+                                                    [self.btnConnect setTitle:@"Connected" forState:(UIControlStateNormal)];
                                                     [currentUser incrementKey:@"RunCount"];
                                                     [currentUser saveInBackground];
                                                     [PFACL setDefaultACL:[PFACL ACL] withAccessForCurrentUser:YES];

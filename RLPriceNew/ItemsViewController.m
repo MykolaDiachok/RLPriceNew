@@ -8,7 +8,10 @@
 
 #import "ItemsViewController.h"
 #import "ItemViewController.h"
-#import <UIImageView+WebCache.h>
+
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <UIActivityIndicator-for-SDWebImage/UIImageView+UIActivityIndicatorForSDWebImage.h>
+
 
 
 
@@ -49,6 +52,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
 
 
 - (id)initWithCoder:(NSCoder *)aCoder
@@ -180,24 +186,30 @@
     }
     
     
-    UIImageView *itemImage = (UIImageView *)[cell viewWithTag:2];
-    
+    UIImageView *itemImage = (UIImageView *)[cell viewWithTag:11];
+//
     PFFile *theImage = [object objectForKey:@"image"];
-    
+    NSLog(@"%@",theImage.url);
+//
+//    
+
+
     
 //    [itemImage setShowActivityIndicatorView:YES];
 //    [itemImage setIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [itemImage sd_setImageWithURL:[NSURL URLWithString:theImage.url ]
-                 placeholderImage:[UIImage imageNamed:@"placeholder"]];
-    [itemImage setContentMode:UIViewContentModeScaleAspectFit];
+//    [itemImage sd_setImageWithURL:[NSURL URLWithString:theImage.url ]
+//                 placeholderImage:[UIImage imageNamed:@"placeholder"]];
+   
     
-    
+    [itemImage setImageWithURL:[NSURL URLWithString:theImage.url] placeholderImage:[UIImage imageNamed:@"placeholder"] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+     [itemImage setContentMode:UIViewContentModeScaleAspectFit];
     
     
     
     
     return cell;
 }
+
 
 
 -(CGFloat)dynamicLblHeight:(UILabel *)lbl
