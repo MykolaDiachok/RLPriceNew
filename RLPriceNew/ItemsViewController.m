@@ -161,7 +161,13 @@
     
     
     UILabel *itemName = (UILabel *)[cell viewWithTag:1];
-    itemName.text = [NSString stringWithFormat:@"%@",object[@"Name"]];
+//    itemName.text = [NSString stringWithFormat:@"%@",object[@"Name"]];
+    [itemName setText:[NSString stringWithFormat:@"%@",object[@"Name"]]];
+    [itemName setNumberOfLines:0];
+    [itemName setMinimumScaleFactor:0.5];
+    [itemName setLineBreakMode:NSLineBreakByWordWrapping];
+    
+    
     itemName.numberOfLines = 0;
     //[itemName sizeToFit];
     //itemName.lineBreakMode = NSLineBreakByWordWrapping;
@@ -324,7 +330,8 @@
         
         UITableViewCell* cell = (UITableViewCell*)[sender superview]; // до обновления обновим лабел
         UILabel *labelQuatity = (UILabel *)[cell viewWithTag:5];
-        labelQuatity.text = [NSString stringWithFormat:@"%@", curQuantity];
+//        labelQuatity.text = [NSString stringWithFormat:@"%@", curQuantity];
+        [labelQuatity setText:[NSString stringWithFormat:@"%@", curQuantity]];
     }
     
     
@@ -368,7 +375,8 @@
                 
                 UITableViewCell* cell = (UITableViewCell*)[sender superview]; // до обновления обновим лабел
                 UILabel *labelQuatity = (UILabel *)[cell viewWithTag:5];
-                labelQuatity.text = [NSString stringWithFormat:@"%@", curQuantity];
+//                labelQuatity.text = [NSString stringWithFormat:@"%@", curQuantity];
+                [labelQuatity setText:[NSString stringWithFormat:@"%@", curQuantity]];
                 
                 //				NSLog(@"%@",[filtered[0] objectForKey:@"quantity"]);
             }
